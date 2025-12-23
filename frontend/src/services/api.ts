@@ -6,7 +6,7 @@ import axios from 'axios'
 // URL de l'API backend
 // En développement, utilise le proxy Vite (URL vide = relatif)
 // En production, utilise VITE_API_URL ou l'URL directe
-const API_URL = import.meta.env.VITE_API_URL || ''
+const API_URL = "http://51.20.85.186:8000"
 
 const api = axios.create({
   baseURL: API_URL,
@@ -22,7 +22,7 @@ api.interceptors.response.use(
   (error) => {
     if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
       console.error('❌ Impossible de se connecter au backend.')
-      console.error('❌ Vérifiez que le backend est démarré sur http://localhost:8000')
+      console.error('❌ Vérifiez que le backend est démarré sur http://51.20.85.186:8000')
       console.error('❌ Commandes pour démarrer le backend:')
       console.error('   cd backend')
       console.error('   .\\venv\\Scripts\\Activate.ps1')
@@ -152,4 +152,3 @@ export const deleteDeployment = async (id: number): Promise<void> => {
 }
 
 export default api
-
